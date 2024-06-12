@@ -11,7 +11,7 @@ import { UserUpdateDto } from '../models/dto/UserUpdateDto';
 })
 export class ApiClientService {
 
-  private apiUrl = environment.apiUrl + '/users';
+  private apiUrl = environment.apiUrl + '/api/users';
 
   constructor(private http: HttpClient) { }
 
