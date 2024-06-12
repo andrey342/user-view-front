@@ -11,7 +11,7 @@ export class DialogService {
 
   open(user: any): MatDialogRef<DialogComponent> {
     return this.dialog.open(DialogComponent, {
-      width: '800px',
+      width: '1000px',
       data: { user }
     });
   }

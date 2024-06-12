@@ -3,9 +3,11 @@ export interface User {
   username: string;
   email: string;
   name?: string;
+  addressId: number;
   address: Address;
   phone: string;
   website: string;
+  companyId: number;
   company: Company;
 }
 
@@ -15,6 +17,7 @@ export interface Address {
   suite: string;
   city: string;
   zipcode: string;
+  geoId: number;
   geo: Geo;
 }
 

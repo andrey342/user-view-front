@@ -13,6 +13,10 @@ import { ToastService } from 'src/app/services/toast.service';
 })
 export class DialogComponent {
   userForm: FormGroup;
+  columns: string[] = [];
+  addressColumns: string[] = ['street', 'suite', 'city', 'zipcode'];
+  geoColumns: string[] = ['lat', 'lng'];
+  companyColumns: string[] = ['name', 'catchPhrase', 'bs'];
 
   constructor(
     private fb: FormBuilder,
@@ -22,37 +26,41 @@ export class DialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.userForm = this.fb.group({
-      id: [data.user.id],
-      username: [data.user.username, Validators.required],
-      email: [data.user.email, [Validators.required, Validators.email]],
-      name: [data.user.name],
-      phone: [data.user.phone],
-      website: [data.user.website]
+      id: [{ value: data.user.id, disabled: true }],
+      username: [{ value: data.user.username, disabled: true }],
+      email: [{ value: data.user.email, disabled: true }],
+      name: [data.user.name, Validators.nullValidator],
+      phone: [{ value: data.user.phone, disabled: true }],
+      website: [{ value: data.user.website, disabled: true }]
     });
+
+    // Define columns for related data tables
+    this.columns = ['address', 'company', 'geo'];
   }
 
   save(): void {
     if (this.userForm.valid) {
-      this.apiClientService.updateUser(this.userForm.value.id, this.userForm.value).subscribe(
+      const updatedUser = { ...this.data.user, name: this.userForm.get('name')?.value };
+      this.apiClientService.updateUser(updatedUser.id, updatedUser).subscribe(
         () => {
-          this.toastService.open('User updated successfully');
+          this.toastService.open('Usuario actualizado correctamente.');
           this.dialogRef.close(true);
         },
         error => {
-          this.toastService.open('Failed to update user');
+          this.toastService.open('Error al actualizar el usuario.');
         }
       );
     }
   }
 
   delete(): void {
-    this.apiClientService.deleteUser(this.userForm.value.id).subscribe(
+    this.apiClientService.deleteUser(this.data.user.id).subscribe(
       () => {
-        this.toastService.open('User deleted successfully');
+        this.toastService.open('Usuario borrado correctamente.');
         this.dialogRef.close(true);
       },
       error => {
-        this.toastService.open('Failed to delete user');
+        this.toastService.open('Error al borrar el usuario.');
       }
     );
   }

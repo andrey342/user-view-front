@@ -3,9 +3,11 @@ export interface UserReadDto {
   username: string;
   email: string;
   name?: string;
+  addressId: number;
   address: AddressReadDto;
   phone: string;
   website: string;
+  companyId: number;
   company: CompanyReadDto;
 }
 
@@ -15,6 +17,7 @@ export interface AddressReadDto {
   suite: string;
   city: string;
   zipcode: string;
+  geoId: number;
   geo: GeoReadDto;
 }
 
