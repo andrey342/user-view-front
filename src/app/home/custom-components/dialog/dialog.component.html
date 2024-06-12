@@ -24,13 +24,13 @@
   </form>
 
   <h2>Address</h2>
-  <app-table [columns]="addressColumns" [data]="[data.user.address]"></app-table>
+  <app-table [columns]="addressColumns" [data]="[data.user.address]" [showActions]="false"></app-table>
 
   <h2>Company</h2>
-  <app-table [columns]="companyColumns" [data]="[data.user.company]"></app-table>
+  <app-table [columns]="companyColumns" [data]="[data.user.company]" [showActions]="false"></app-table>
 
   <h2>Geo</h2>
-  <app-table [columns]="geoColumns" [data]="[data.user.address.geo]"></app-table>
+  <app-table [columns]="geoColumns" [data]="[data.user.address.geo]" [showActions]="false"></app-table>
 </div>
 <div mat-dialog-actions class="d-flex justify-content-end">
   <button mat-button (click)="close()">Cancelar</button>

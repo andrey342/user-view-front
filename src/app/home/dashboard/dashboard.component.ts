@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiClientService } from 'src/app/services/api-client.service';
-import { DialogComponent } from '../custom-components/dialog/dialog.component';
-import { CustomToastComponent } from '../custom-components/custom-toast/custom-toast.component';
-import { ActionDialogComponent } from '../custom-components/action-dialog/action-dialog.component';
 import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({

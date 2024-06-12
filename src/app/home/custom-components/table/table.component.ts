@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class TableComponent {
   @Input() columns: string[] = [];
   @Input() data: any[] = [];
+  @Input() showActions: boolean = true; // Nuevo input para mostrar o no las acciones
   @Output() rowSelected = new EventEmitter<any>();
 
   displayedColumns: string[] = [];
@@ -17,7 +18,7 @@ export class TableComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
-    this.displayedColumns = [...this.columns, 'actions'];
+    this.setupColumns();
     this.dataSource = new MatTableDataSource(this.data);
   }
 
@@ -26,7 +27,15 @@ export class TableComponent {
   }
 
   ngOnChanges(): void {
+    this.setupColumns();
     this.dataSource.data = this.data;
+  }
+
+  setupColumns(): void {
+    this.displayedColumns = this.columns;
+    if (this.showActions) {
+      this.displayedColumns = [...this.columns, 'actions'];
+    }
   }
 
   selectRow(row: any): void {

@@ -5,7 +5,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TableComponent } from './custom-components/table/table.component';
 import { DialogComponent } from './custom-components/dialog/dialog.component';
-import { ActionDialogComponent } from './custom-components/action-dialog/action-dialog.component';
 import { CustomToastComponent } from './custom-components/custom-toast/custom-toast.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
@@ -22,7 +21,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DashboardComponent,
     TableComponent,
     DialogComponent,
-    ActionDialogComponent,
     CustomToastComponent
   ],
   imports: [
