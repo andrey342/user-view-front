@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiClientService } from 'src/app/services/api-client.service';
+import { CustomToastComponent } from '../custom-toast/custom-toast.component';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-dialog',
@@ -15,7 +17,7 @@ export class DialogComponent {
   constructor(
     private fb: FormBuilder,
     private apiClientService: ApiClientService,
-    private snackBar: MatSnackBar,
+    private toastService: ToastService,
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
@@ -33,11 +35,11 @@ export class DialogComponent {
     if (this.userForm.valid) {
       this.apiClientService.updateUser(this.userForm.value.id, this.userForm.value).subscribe(
         () => {
-          this.snackBar.open('User updated successfully', 'Close', { duration: 2000 });
+          this.toastService.open('User updated successfully');
           this.dialogRef.close(true);
         },
         error => {
-          this.snackBar.open('Failed to update user', 'Close', { duration: 2000 });
+          this.toastService.open('Failed to update user');
         }
       );
     }
@@ -46,11 +48,11 @@ export class DialogComponent {
   delete(): void {
     this.apiClientService.deleteUser(this.userForm.value.id).subscribe(
       () => {
-        this.snackBar.open('User deleted successfully', 'Close', { duration: 2000 });
+        this.toastService.open('User deleted successfully');
         this.dialogRef.close(true);
       },
       error => {
-        this.snackBar.open('Failed to delete user', 'Close', { duration: 2000 });
+        this.toastService.open('Failed to delete user');
       }
     );
   }

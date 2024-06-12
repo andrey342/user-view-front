@@ -5,6 +5,7 @@ import { ApiClientService } from 'src/app/services/api-client.service';
 import { DialogComponent } from '../custom-components/dialog/dialog.component';
 import { CustomToastComponent } from '../custom-components/custom-toast/custom-toast.component';
 import { ActionDialogComponent } from '../custom-components/action-dialog/action-dialog.component';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,8 +18,7 @@ export class DashboardComponent {
 
   constructor(
     private apiClientService: ApiClientService,
-    private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private userDialogService: DialogService
   ) {
     this.loadUsers();
   }
@@ -30,37 +30,14 @@ export class DashboardComponent {
   }
 
   openUserDialog(user: any): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '400px',
-      data: { user }
-    });
+    const dialogRef = this.userDialogService.open(user);
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.snackBar.openFromComponent(CustomToastComponent, {
-          data: { message: 'Operation successful' },
-          duration: 2000
-        });
-      }
-    });
-  }
-
-  confirmDeleteUser(user: any): void {
-    const dialogRef = this.dialog.open(ActionDialogComponent, {
-      width: '300px',
-      data: { message: 'Are you sure you want to delete this user?' }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.apiClientService.deleteUser(user.id).subscribe(() => {
-          this.snackBar.openFromComponent(CustomToastComponent, {
-            data: { message: 'User deleted successfully' },
-            duration: 2000
-          });
-          this.loadUsers();
-        });
+        this.loadUsers();
       }
     });
   }
 }
+
+
