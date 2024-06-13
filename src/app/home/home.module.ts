@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HomeRoutingModule } from './home-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { TableComponent } from './custom-components/table/table.component';
+import { DialogComponent } from './custom-components/dialog/dialog.component';
+import { CustomToastComponent } from './custom-components/custom-toast/custom-toast.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -14,15 +15,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
 @NgModule({
   declarations: [
-    AppComponent
+    DashboardComponent,
+    TableComponent,
+    DialogComponent,
+    CustomToastComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
+    CommonModule,
+    HomeRoutingModule,
     ReactiveFormsModule,
     MatTableModule,
     MatDialogModule,
@@ -32,8 +35,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatInputModule,
     MatPaginatorModule,
     MatTooltipModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  ]
 })
-export class AppModule { }
+export class HomeModule { }

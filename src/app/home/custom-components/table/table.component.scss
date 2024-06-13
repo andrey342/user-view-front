@@ -1,0 +1,22 @@
+.table-container {
+  display: block;
+  width: auto;
+  overflow-x: auto;
+}
+
+.mat-column-actions {
+  flex: 0 0 auto; /* Para que la columna de acciones no se ajuste al contenido */
+}
+
+.mat-cell, .mat-header-cell {
+  white-space: nowrap; /* Evita el salto de línea en las celdas */
+  padding: 8px 16px; /* Ajusta el relleno para un mejor aspecto */
+}
+
+.mat-header-cell {
+  font-weight: bold; /* Hace que las cabeceras sean en negrita */
+}
+
+.mat-table {
+  width: 100%; /* Asegura que la tabla ocupe el ancho disponible */
+}
